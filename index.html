@@ -7,13 +7,17 @@
   </head>
   <body>
 
-    <div class="startdiv">
+    <div class="startdiv" id="start-quiz">
+        <h1>Coding Quiz Challenge</h1>
         <p>
-            hjkddhuebn
+            Try to answer the following code-related beginners quiz within the time 
+            limit. Keep in mind that incorrect answers will penalize your score time 
+            by 10 seconds!
         </p>
-        <button id="start-quiz" class="btn">Start Quiz</button>
+        <button id="start-quiz-button" class="btn">Start Quiz</button>
     </div>
 
+   <div id= "quiz-content" class="quiz">
     <div id="timer"></div>
 
     <div id="question"></div>
@@ -21,8 +25,10 @@
     <ul id="option-list"></ul>
 
     <div id="question-result"></div>
+   </div>
 
-    <div>
+
+    <div id="end-quiz">
         <h2> 
             All Done!
             <div id=display-score></div>
@@ -31,12 +37,11 @@
         <button id="submit-score">Submit</button>
     </div>
 
-    <div>
+    <div id="display-highscores">
         <h2>Highscores</h2>
-        <div id="highscore-initials"></div>
-        <div id="highscore"></div>
+        <div id="highscores"></div>
         <div id="end-game-buttons">
-            <button id="go-back-button">Go Back</button>
+            <button id="go-back-button">Take Again</button>
             <button id= "clear-highscore-button"> Clear Highscore</button>
         </div>
     </div>
