@@ -83,13 +83,20 @@ answer: "Bootstrap",
   
   var time = 100;
   var intervalId;
+  
+  highScoreDiv.style.display = "none";
+  endQuizDiv.style.display = "none";
 
   // function to render question
   function renderQuestion() {
     endQuizDiv.style.display = "none";
-    
+
+    if (questionIndex >= 9) {
+        return;
+    }
+  else{
     questionEl.textContent = questions[questionIndex].question;
-  
+  }
     optionListEl.innerHTML = "";
     questionResultEl.innerHTML = "";
   
@@ -99,19 +106,19 @@ answer: "Bootstrap",
     for (var i = 0; i < choicesLength; i++) {
       var questionListItem = document.createElement("li");
       questionListItem.textContent = choices[i];
+      questionListItem.className = "option-list"
       optionListEl.append(questionListItem);
     }
   }
 
-  // timer
+  // timer function
   function updateTime() {
     time--;
     timerEl.textContent = "Time left: " + time;
     if (time <= 0) {
+        clearInterval(intervalId);
         endQuiz();
     }   
-      // time interval of 1 second
-      intervalId = setInterval(updateTime, 1000);
   }
 
   // Start quiz function 
@@ -119,16 +126,17 @@ function startQuiz(){
     startQuizDiv.style.display = "none";
     highScoreDiv.style.display = "none";
     endQuizDiv.style.display = "none";
-    renderQuestion()
-    updateTime()
-quizContent.style.display = "block";
+    renderQuestion();
+     // time interval of 1 second
+    intervalId = setInterval(updateTime(), 1000);
+    quizContent.style.display = "block";
 }
 
 // function to end quiz at the end of the questions array or when time =0
   function endQuiz() {
-    quizContent.style.display = "none"
+    quizContent.style.display = "none";
+    displayScore.innerHTML = "Quiz over, You scored " + correctCount;
     clearInterval(intervalId);
-    displayScore.innerHTML = "Game over, You scored " + correctCount;
     endQuizDiv.style.display = "flex";
   }
 
@@ -173,10 +181,12 @@ quizContent.style.display = "block";
 // function to render next question
   function nextQuestion() {
     questionIndex++;
-    if (questionIndex === questions.length) {
-      time = 0;
+    if (questionIndex >= questions.length) {
+    endQuiz();
     }
-    renderQuestion();
+    else{
+        renderQuestion();
+    }
   }
   
   // function to check correct and incorrect answers 
