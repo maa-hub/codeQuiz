@@ -19,7 +19,8 @@
     </div>
 
    <div id= "quiz-content" class="quiz">
-    <div id="timer"></div>
+
+    <div id="timer" class=timer-div></div>
 
     <div id="question"></div>
 
@@ -29,18 +30,22 @@
    </div>
 
 
-    <div id="end-quiz">
+    <div id="end-quiz" class="end">
         <h2> 
             All Done!
             <div id=display-score></div>
         </h2>
-        <input type="text" placeholder="Enter you initials here" name="initials" id="high-score-initials"/>
+        <input type="text" placeholder="Enter your initials here" name="initials" id="high-score-initials"/>
         <button id="submit-score">Submit</button>
     </div>
 
     <div id="display-highscores">
-        <h2>Highscores</h2>
-        <div id="highscores"></div>
+        <h1>Highscores</h2>
+        <div id="initial-heading">
+            <h3>Initials/Scores</h3>
+        </div>
+        <div id="highscores">
+        </div>
         <div id="end-game-buttons">
             <button id="go-back-button">Take Again</button>
             <button id= "clear-highscore-button"> Clear Highscore</button>

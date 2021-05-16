@@ -2,26 +2,35 @@ body{
     background-color: cornsilk;
 }
 
-li{
-   background-color: darkmagenta;
+.option-list{
+   background-color: violet;
    padding: 2px;
    list-style-type: square;
+   font-size: 20px;
 }
 
 li:hover{
     opacity: 0.4;
+    font-style: italic;
+    font-weight: bold;
+    
 }
 
+li:nth-child(2n -1) {
+    background-color: darkmagenta;
+  }
+  
 button {
-
     font-family: cursive;
     background-color: lightcoral;
     border-radius: 5px;
     border: 1px double magenta;
     color: black;
     text-align: center;
-    font-size: 10px;
-    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    height: 55px;
+    width: 85px;
     margin-top: 3px;
   }
 
@@ -29,5 +38,83 @@ button {
       box-shadow: 4px 3px 6px;
   }
 
+  .startdiv {
+    color: black;
+    text-shadow: 1px 1px lightcoral;
+    text-align: center;
+    font-size: large;
+    font-family: fantasy;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+
+  input {
+      text-align: center;
+  }
+
+  h1 {
+      font-family: sans-serif;
+  }
+
+  .timer-div{
+      font-family: sans-serif;
+      background-color: black;
+      color: tomato;
+      font-weight: bolder;
+  }
+
+  .end{
+    text-align: center;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #display-highscores{
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #highscores{
+    font-size: 15px;
+  }
 
 
+  #highscores li{
+    list-style-type:none;
+  }
+
+  #highscores li:nth-child(2n -1){
+    list-style-type: square;
+    background-color: darkturquoise;
+  }
+
+  #question{
+      padding: 10px 0px; 
+  }
+
+  .correct-result{
+      color: green;
+      font-weight: bolder;
+      font-size: 25px;
+  }
+
+  .incorrect-result{
+    color: red;
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+#initial-heading{
+    display:flex;
+    justify-content: space-around;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+
+}
+#display-highscores h1{
+    font-size: 35px;
+}

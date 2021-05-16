@@ -81,7 +81,7 @@ answer: "Bootstrap",
   var questionIndex = 0;
   var correctCount = 0;
   
-  var time = 100;
+  var time = 60;
   var intervalId;
   
   highScoreDiv.style.display = "none";
@@ -90,7 +90,6 @@ answer: "Bootstrap",
   // function to render question
   function renderQuestion() {
     endQuizDiv.style.display = "none";
-
     if (questionIndex >= 9) {
         return;
     }
@@ -128,16 +127,17 @@ function startQuiz(){
     endQuizDiv.style.display = "none";
     renderQuestion();
      // time interval of 1 second
-    intervalId = setInterval(updateTime(), 1000);
+    timerEl.textContent = "Time left: " + time;
+    intervalId = setInterval(updateTime, 1000);
     quizContent.style.display = "block";
 }
 
 // function to end quiz at the end of the questions array or when time =0
   function endQuiz() {
     quizContent.style.display = "none";
+    endQuizDiv.style.display = "flex";
     displayScore.innerHTML = "Quiz over, You scored " + correctCount;
     clearInterval(intervalId);
-    endQuizDiv.style.display = "flex";
   }
 
   // function for showing the score you got
@@ -181,8 +181,9 @@ function startQuiz(){
 // function to render next question
   function nextQuestion() {
     questionIndex++;
-    if (questionIndex >= questions.length) {
+    if (questionIndex >= questions.length || time<=0) {
     endQuiz();
+    clearInterval(intervalId);
     }
     else{
         renderQuestion();
@@ -191,17 +192,18 @@ function startQuiz(){
   
   // function to check correct and incorrect answers 
   function checkAnswer(event) {
-    clearInterval(intervalId);
+    // clearInterval(intervalId);
     if (event.target.matches("li")) {
       var answer = event.target.textContent;
       if (answer === questions[questionIndex].answer) {
-        questionResultEl.textContent = "Correct";
+        questionResultEl.textContent = "Correct!😃";
+        questionResultEl.className = "correct-result"
         correctCount++;
         
       } else {
-        questionResultEl.textContent = "Incorrect";
+        questionResultEl.textContent = "Incorrect!😔";
         time = time - 10;
-        timerEl.textContent = time;
+        questionResultEl.className = "incorrect-result"
       }
     }
     setTimeout(nextQuestion, 2000);
@@ -217,9 +219,11 @@ function startQuiz(){
   function quizAgain (){
     highScoreDiv.style.display = "none";
     endQuizDiv.style.display = "none";
-    time = 100;
+    startQuizDiv.style.display = "flex";
+    time = 60;
     correctCount = 0;
-    startQuiz()
+    questionIndex = 0;
+    
   }
 
   startQuizButton.addEventListener("click",startQuiz);
